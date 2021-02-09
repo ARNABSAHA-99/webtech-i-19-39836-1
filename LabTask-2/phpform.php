@@ -9,6 +9,7 @@
 
 <?php
 $nameErr = $emailErr = $genderErr = $dateofbirthErr = $degreeErr = $bloodgroupErr = "";
+
 $name = $email = $gender = $dateofbirth = $bloodgroup = $count = "";
 
 $degree = array();
@@ -24,12 +25,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     $name = test_input($_POST["name"]);
     if (!preg_match("/^[a-zA-Z-' .]*$/",$name) || str_word_count($name)<2 )
     {
-      $nameErr = "Only letters, white space, period, dash allowed and minimum two words";
+      $nameErr = "Only letters and must have two word";
       $name="";
     }
   }
 
-  
+
   if (empty($_POST["email"])) 
   {
     $emailErr = "Email is required";
@@ -44,7 +45,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     }
   }
     
-
   if (empty($_POST["birthday"])) 
   {
     $dateofbirthErr = "Date of Birth is required";
@@ -54,7 +54,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     $dateofbirth = test_input($_POST["birthday"]);
   }
 
-
   if (empty($_POST["gender"])) 
   {
     $genderErr = "Gender is required";
@@ -63,7 +62,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
   {
     $gender = test_input($_POST["gender"]);
   }
-
 
   if (empty($_POST["degree"]) ) 
   {
@@ -77,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 	}
   	if ($count<2)
   	{
-  		$degreeErr = "Must mark atleast two Degrees";
+  		$degreeErr = "Must mark atleast two option";
   	}
   	
   }
@@ -125,6 +123,8 @@ function test_input($data)
   <span class="error">* <?php echo $genderErr;?></span>
   <br><br>
 
+
+
   Degree:
   <input type="checkbox" name="degree[]" <?php if (isset($degree) && $degree=="ssc") echo "checked";?> value="ssc">SSC
   <input type="checkbox" name="degree[]" <?php if (isset($degree) && $degree=="hsc") echo "checked";?> value="hsc">HSC
@@ -132,6 +132,8 @@ function test_input($data)
   <input type="checkbox" name="degree[]" <?php if (isset($degree) && $degree=="msc") echo "checked";?> value="msc">MSc
   <span class="error">* <?php echo $degreeErr;?></span>
   <br><br>
+
+
 
   Blood Group:
   <select name="bloodgroup">
@@ -155,12 +157,17 @@ function test_input($data)
 echo "<h2>Your Input:</h2>";
 echo $name;
 echo "<br>";
+
 echo $email;
 echo "<br>";
+
 echo $dateofbirth;
 echo "<br>";
+
 echo $gender;
 echo "<br>";
+
+
 foreach($_POST['degree'] as $selected_degree)
 	{
 		if($count>1)
@@ -169,6 +176,7 @@ foreach($_POST['degree'] as $selected_degree)
 		}
 	}
 echo "<br>";
+
 echo $bloodgroup;
 ?>
 
