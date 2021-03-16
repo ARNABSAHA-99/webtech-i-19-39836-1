@@ -17,7 +17,7 @@ else
 }
 
 $username="Arnab Saha";
-$userpassword="$733834378";
+$userpassword="$12345678";
 
 if (isset($_POST['user_name'])) {
 	if ($_POST['user_name']==$username && $_POST['password']==$userpassword) {
