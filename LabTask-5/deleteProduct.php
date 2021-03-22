@@ -1,30 +1,37 @@
+<?php 
+
+require_once 'model/model.php';
+if(isset($_GET['id']))
+{
+  $product = showProduct($_GET['id']);  
+}
+else
+{
+  header('Location: displayProduct.php');
+}
+ ?>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delete Product</title>
-    <link rel="stylesheet" href="CSS/style.css">
+<title>Delete Product</title>
 </head>
 <body>
+<form method="POST">
+ <fieldset style="width: 15%;">
+  <legend>DELETE PRODUCT</legend>
 
-<div style="margin-left: 40%; margin-top: 10%;">
-<form action="">
-<fieldset style="width:300px">
-<legend>DELETE PRODUCT</legend>
- 
- <p> Name: HTC</p>
- <p> Buying Price: 34000</p>
- <p> Selling Price: 37000</p>
- <p> Displayable: Yes</p> <hr>
+  Name : <?php echo $product['Name'] ?><br>
 
-  
-  
- <input type="submit" name = "addproduct" value="Delete">
-  
-  </fieldset>
+  Buying Price : <?php echo $product['Buying Price'] ?><br>
+
+  Selling Price : <?php echo $product['Selling Price'] ?><br>
+
+  Displayable :<?php echo $product['Display'] ?><br>
+
+  <hr>
+  <a href="Controller/removeProduct.php?id=<?php echo $product['ID'] ?>">Delete</a>
+
+ </fieldset>
 </form>
- </div>
 </body>
 </html>

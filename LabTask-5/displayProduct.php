@@ -1,50 +1,46 @@
+<?php  
+if (!isset($_POST['name'])) 
+{
+  require_once ('model/model.php');
+  $products = showAllproducts();
+}
+?>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Display Product</title>
- <style>
-table, th, td {
-  border: 1px solid black;
-  border-collapse: collapse;
-}
-}
-</style>
+<title>Display Product</title>
 </head>
 <body>
+<style>
+table,td,th{
+border:1px solid black;
+    }
+</style>
+<fieldset style="width:15%;">
+<legend>Display</legend>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Profit</th>
+<th colspan="2">Edit&Delete</th>
+</tr>
+</thead>
+<body>
+<?php 
+foreach ($products as $i => $product): 
+if ($product['Display'] == "YES" || isset($_POST['name'])):
+?>
+<tr>
 
-<div style="margin-left: 40%; margin-top: 10%;">
-<form action="">
-<fieldset style="width:300px">
-<legend>DISPLAY</legend>
-  <table style="width:100%">
-   <tr>
-    <th>NAME</th>
-    <th>PROFIT</th> 
- 
-  </tr>
-   <tr>
-   <td>Samsung</td>
-   <td>5000</td>
-   <td><input type="submit" name="Submit" value="Edit"> </td>
-    <td><input type="submit" name="Submit" value="Delete"> </td>
-  </tr>
-   <tr>
-   <td>Nokia</td>
-   <td>1500</td>
-    <td><input type="submit" name="Submit" value="Edit"> </td>
-    <td><input type="submit" name="Submit" value="Delete"> </td>
-  </tr>
-   <tr>
-   <td>Xiaomi</td>
-   <td>3300</td>
-     <td><input type="submit" name="Submit" value="Edit"> </td>
-    <td><input type="submit" name="Submit" value="Delete"> </td>
-  </tr>
-  </fieldset>
-</form>
- </div>
+<td><?php echo $product['Name'] ?></td>
+<td><?php echo $product['Selling Price'] - $product['Buying Price'] ?></td>
+<td><a href="editProduct.php?id=<?php echo $product['ID'] ?>">Edit</a></td>
+<td><a href="deleteProduct.php?id=<?php echo $product['ID'] ?>">Delete</a></td>
+</tr>
+ <?php endif; endforeach; ?>
+</body>
+</table>
+</fieldset>
 </body>
 </html>

@@ -1,32 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Product</title>
-    <link rel="stylesheet" href="CSS/style.css">
+<title>Add Product</title>
 </head>
 <body>
+<form action="controller/saveProduct.php" method="POST" enctype="multipart/form-data">
+ <fieldset style="width: 15%;">
+  <legend>ADD PRODUCT</legend>
 
-<div style="margin-left: 40%; margin-top: 10%;">
-<form action="">
-<fieldset style="width:300px">
-<legend>ADD PRODUCT</legend>
   <label for="name">Name</label><br>
   <input type="text" id="name" name="name"><br>
-  <label for="buying price">Buying Price</label><br>
-  <input type="text" id="buying price" name="buying price"><br>
-  <label for="selling price">Selling Price</label><br>
-  <input type="text" id="selling price" name="selling price"><br> <hr>
+
+  <label for="buyingPrice">Buying Price</label><br>
+  <input type="text" id="buyingPrice" name="buyingPrice"><br>
+
+  <label for="sellingPrice">Selling Price</label><br>
+  <input type="text" id="sellingPrice" name="sellingPrice"><br>
+
+  <hr>
 
   <input type="checkbox" id="display" name="display">
-  <label for="display">Display</label> <hr>
-  
- <input type="submit" name = "addproduct" value="SAVE">
-  
-  </fieldset>
+  <label for="display">Display</label><br>
+
+  <hr>
+
+  <input type="submit" name = "saveProduct" value="Save">
+
+ </fieldset>
 </form>
- </div>
 </body>
 </html>
