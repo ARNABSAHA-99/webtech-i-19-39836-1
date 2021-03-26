@@ -17,8 +17,8 @@ else
 </head>
 <body>
 <form method="POST">
- <fieldset style="width: 15%;">
-  <legend>DELETE PRODUCT</legend>
+<fieldset style="width: 15%;">
+<legend>DELETE PRODUCT</legend>
 
   Name : <?php echo $product['Name'] ?><br>
 

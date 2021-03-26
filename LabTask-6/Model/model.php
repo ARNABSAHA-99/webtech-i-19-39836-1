@@ -2,16 +2,21 @@
 
 require_once 'db_connect.php';
 
-function addProduct($data){
+function addData($data){
     $conn = db_conn();
-    $selectQuery = "INSERT INTO `user_info`(`UserName`, `Password`, `Category`)  VALUES (:username, :password, :category)";
+    $selectQuery = "INSERT INTO `doctor`(`Name`, `Email`, `Mobile Number`, `Address`, `Password`, `Shift`, `Category`, `Gender`, `Date of Birth`)  VALUES (:name, :email, :mobile_number, :address, :password, :shift, :category, :gender, :dob)";
     try{
         $stmt = $conn->prepare($selectQuery);
         $stmt->execute([
-            ':username' => $data['username'],
-            ':password' => $data['password'],
-            ':category' => $data['category'],
-           
+            ':name' => $_POST['name'],
+            ':email' => $_POST['email'],
+            ':mobile_number' => $_POST['mobile_number'],
+            ':address' => $_POST['address'],
+            ':password' => $data,
+            ':shift' => $_POST['shift'],
+            ':category' => $_POST['category'],
+            ':gender' => $_POST['gender'],
+            ':dob' => $_POST['dob']
         ]);
     }catch(PDOException $e){
         echo $e->getMessage();
@@ -21,9 +26,9 @@ function addProduct($data){
     return true;
 }
 
-function showAllusers(){
+function showAllproducts(){
 	$conn = db_conn();
-    $selectQuery = 'SELECT * FROM `user_info` ';
+    $selectQuery = 'SELECT * FROM `doctor` ';
     try{
         $stmt = $conn->query($selectQuery);
     }catch(PDOException $e){
@@ -33,13 +38,13 @@ function showAllusers(){
     return $rows;
 }
 
-function updateUser($id, $data){
+function updateProduct($id, $data){
     $conn = db_conn();
-    $selectQuery = "UPDATE `user_info` set `UserName` = ?, `Password` = ?, `Category` = ? where `ID` = ?";
+    $selectQuery = "UPDATE `doctor` set `Name` = ?, `Buying Price` = ?, `Selling Price` = ?, `Display` = ? where `ID` = ?";
     try{
         $stmt = $conn->prepare($selectQuery);
         $stmt->execute([
-            $data['username'], $data['password'], $data['category'], $id
+            $data['name'], $data['buyingPrice'], $data['sellingPrice'], $data['display'], $id
         ]);
     }catch(PDOException $e){
         echo $e->getMessage();
@@ -49,9 +54,9 @@ function updateUser($id, $data){
     return true;
 }
 
-function deleteUser($id){
+function deleteProduct($id){
     $conn = db_conn();
-    $selectQuery = "DELETE FROM `user_info` WHERE `ID` = ?";
+    $selectQuery = "DELETE FROM `doctor` WHERE `ID` = ?";
     try{
         $stmt = $conn->prepare($selectQuery);
         $stmt->execute([$id]);
@@ -63,29 +68,30 @@ function deleteUser($id){
     return true;
 }
 
-function showUser($id){
+function showData($id){
 	$conn = db_conn();
-	$selectQuery = "SELECT * FROM `user_info` where ID = ?";
+	$selectQuery = "SELECT * FROM `doctor` where ID = ?";
     try {
         $stmt = $conn->prepare($selectQuery);
         $stmt->execute([$id]);
     } catch (PDOException $e) {
         echo $e->getMessage();
     }
-    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    $data = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    return $row;
+    return $data;
 }
 
-function searchUser($name){
+function searchData($name){
     $conn = db_conn();
-    $selectQuery = "SELECT * FROM `user_info` WHERE Name LIKE '%$name%'";
-    try{
-        $stmt = $conn->query($selectQuery);
-    }catch(PDOException $e){
+    $selectQuery = "SELECT * FROM `doctor` WHERE Name = ?";
+     try {
+        $stmt = $conn->prepare($selectQuery);
+        $stmt->execute([$name]);
+    } catch (PDOException $e) {
         echo $e->getMessage();
     }
-    $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    return $rows;
+    $data = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $data;
 }
 ?>

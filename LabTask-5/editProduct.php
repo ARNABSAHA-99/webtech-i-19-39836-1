@@ -25,18 +25,18 @@ else
   <input type="text" id="name" name="name" value="<?php echo $product['Name'] ?>"><br>
 
   <label for="buyingPrice">Buying Price</label><br>
-  <input type="text" id="buyingPrice" name="buyingPrice" value="<?php echo $product['Buying Price'] ?>"><br>
-
+  <input type="text" id="buyingPrice" name="buyingPrice" value="<?php echo $product['Buying Price'] ?>">
+  <br>
   <label for="sellingPrice">Selling Price</label><br>
   <input type="text" id="sellingPrice" name="sellingPrice" value="<?php echo $product['Selling Price'] ?>"><br>
 
-  <hr>
-  
+  <hr> 
+
   <input type="checkbox" id="display" name="display"<?php if($product['Display']== "YES"){echo "checked";} ?>>
   <label for="display">Display</label><br>
 
   <hr>
-
+  
   <input type="submit" name = "updateProduct" value="Save">
 
  </fieldset>

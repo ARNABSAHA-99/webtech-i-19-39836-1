@@ -23,7 +23,7 @@
   <label for="display">Display</label><br>
 
   <hr>
-
+  
   <input type="submit" name = "saveProduct" value="Save">
 
  </fieldset>
