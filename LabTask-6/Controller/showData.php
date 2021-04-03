@@ -1,21 +1,15 @@
 <?php 
-require 'Model/jsonCode.php';
-$data=readFromJson("Json/data.json");
-foreach($data as $row)  
-{
-	if($_SESSION['name']==$row["name"])
-	{
-		$name = $row["name"];
-		$id = "0021";
-		$shift = $row["shift"];
-  		$email = $row["email"];
- 		$mobile_number = $row["mobile_number"];
-  		$address = $row["address"];
-  		$category = $row["category"];
-  		$gender = $row["gender"];
-  		$dob = $row["dob"];
-  		return;
-	}
-}
+require 'Model/model.php';
+$data=showData($_SESSION['id']);
 
+$name = $data["Name"];
+$id = $data["ID"];
+$shift = $data["Shift"];
+$email = $data["Email"];
+$mobile_number = $data["Mobile Number"];
+$address = $data["Address"];
+$category = $data["Category"];
+$gender = $data["Gender"];
+$dob = $data["Date of Birth"];
+$image = $data["Image"];
 ?>

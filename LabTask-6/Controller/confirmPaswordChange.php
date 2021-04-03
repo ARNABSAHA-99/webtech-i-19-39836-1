@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
       $current_passwordErr = "Password must contain at least one of the special character (!,@,#,$,%,^,&)";
       $current_password="";
     }
-    else if($current_password!=$password)
+    if(!password_verify($current_password, $password))
     {
       $current_passwordErr = "Password dosen't match";
       $current_password="";
@@ -46,9 +46,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
       $new_passwordErr = "Must be atlest 8 characters";
       $new_password="";
     }
-    else if (!preg_match("/[@,#,$,%]/",$new_password)) 
+    else if (!preg_match("/[!,@,#,$,%,^,&]/",$new_password)) 
     {
-      $new_passwordErr = "Password must contain at least one of the special character (@, #, $,%)";
+      $new_passwordErr = "Password must contain at least one of the special character (!,@,#,$,%,^,&)";
       $new_password ="";
     }
     else if($new_password==$current_password)
@@ -70,9 +70,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
       $retype_new_passwordErr = "Password dosen't match";
       $retype_new_password="";
     }
-    if($retype_new_password==$new_password)
+    else if($retype_new_password==$new_password && password_verify($current_password, $password))
     {
-      $message = "Password has been Changed";
+      $encrypted_password = password_hash($new_password, PASSWORD_BCRYPT, ["cost" => 10]);
+      if(updatePassword($_SESSION['id'], $encrypted_password)){$message = "Password has been Changed";}
     }
   }
 }

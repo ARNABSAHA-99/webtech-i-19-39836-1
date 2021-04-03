@@ -4,6 +4,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
 $target_dir = "Uploads/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
@@ -25,12 +26,6 @@ if(isset($_POST["submit"])) {
   }
 }
 
-// Check if file already exists
-if (file_exists($target_file)) {
-  echo "Sorry, file already exists.<br>";
-  $uploadOk = 0;
-}
-
 // Check file size
 if ($_FILES["fileToUpload"]["size"] > 5000000) {
   echo "Sorry, your file is too large.<br>";
@@ -48,11 +43,19 @@ if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg
 if ($uploadOk == 0) {
   echo "Sorry, your file was not uploaded.<br>";
 // if everything is ok, try to upload file
-} else {
-  if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-    echo "The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " has been uploaded.<br>";
-    $_SESSION['pic'] = $_FILES["fileToUpload"]["name"];
-  } else {
+} 
+else {
+  if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) 
+  {
+    require 'Model/model.php';
+    $data = basename( $_FILES["fileToUpload"]["name"]);
+    if(updatePicture($_SESSION['id'], $data))
+    {
+      echo "The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " has been uploaded.<br>";
+      $_SESSION['pic'] = basename( $_FILES["fileToUpload"]["name"]);
+    }
+  } 
+  else {
     echo "Sorry, there was an error uploading your file.<br>";
   }
 }

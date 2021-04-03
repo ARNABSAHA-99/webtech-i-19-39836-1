@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 26, 2021 at 02:26 PM
+-- Generation Time: Apr 03, 2021 at 07:47 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.4.14
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `modernmedical`
+-- Database: `modern medical`
 --
 
 -- --------------------------------------------------------
@@ -37,16 +37,17 @@ CREATE TABLE `doctor` (
   `Shift` text NOT NULL,
   `Category` text NOT NULL,
   `Gender` text NOT NULL,
-  `Date of Birth` int(20) NOT NULL
+  `Date of Birth` int(20) NOT NULL,
+  `Image` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `doctor`
 --
 
-INSERT INTO `doctor` (`ID`, `Name`, `Email`, `Mobile Number`, `Address`, `Password`, `Shift`, `Category`, `Gender`, `Date of Birth`) VALUES
-(1, 'Arnab Saha', 'arnabsaha1999@gmail.com', 1712121212, 'Narsingdi,Dhaka', '$2y$10$Aes2aMmLJHSbTqbU1Pul9uOLa1d23zVoW1XKxYYIkPCdYabtLpY8i', 'Night (4PM -12PM)', 'Doctor', 'Male', 1999),
-(2, 'Anik Saha', 'anik@gmail.com', 2147483647, 'Gazipur,Dhaka', '$2y$10$NROvd4oBifVwBo0bOygV9uFl9ctjx6Se4sxHTYHpRVtUIZzVn/85i', 'Day (8AM - 4PM)', 'Doctor', 'Male', 1995);
+INSERT INTO `doctor` (`ID`, `Name`, `Email`, `Mobile Number`, `Address`, `Password`, `Shift`, `Category`, `Gender`, `Date of Birth`, `Image`) VALUES
+(3, 'Arnab Saha', 'arnabsaha1999@gmail.com', 1821456987, 'Narsingdi,Dhaka', '$2y$10$GrExr7jKqxXuLsI6Cz7pV.OQb7gPMhVyZQrEi0T5NnMNHxLbH04tu', 'Night (4PM -12PM)', 'Doctor', 'Male', 1999, ''),
+(4, 'Anik Saha', 'anik@gmail.com', 1678945611, 'Gazipur,Dhaka', '$2y$10$a40fVnUR8VSrZSW/1cDI6u.Si17XdlPx9BYoRGsfIhxniQPjIbq/2', 'Day (8AM - 4PM)', 'Doctor', 'Male', 1992, '');
 
 --
 -- Indexes for dumped tables
@@ -66,7 +67,7 @@ ALTER TABLE `doctor`
 -- AUTO_INCREMENT for table `doctor`
 --
 ALTER TABLE `doctor`
-  MODIFY `ID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

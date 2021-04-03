@@ -26,7 +26,7 @@ function addData($data){
     return true;
 }
 
-function showAllproducts(){
+function showAllData(){
 	$conn = db_conn();
     $selectQuery = 'SELECT * FROM `doctor` ';
     try{
@@ -38,13 +38,45 @@ function showAllproducts(){
     return $rows;
 }
 
-function updateProduct($id, $data){
+function updateData($id, $data){
     $conn = db_conn();
-    $selectQuery = "UPDATE `doctor` set `Name` = ?, `Buying Price` = ?, `Selling Price` = ?, `Display` = ? where `ID` = ?";
+    $selectQuery = "UPDATE `doctor` set `Name` = ?, `Email` = ?, `Mobile Number` = ?, `Address` = ?, `Shift` = ? where `ID` = ?";
     try{
         $stmt = $conn->prepare($selectQuery);
         $stmt->execute([
-            $data['name'], $data['buyingPrice'], $data['sellingPrice'], $data['display'], $id
+            $data['name'], $data['email'], $data['mobile_number'], $data['address'], $data['shift'], $id
+        ]);
+    }catch(PDOException $e){
+        echo $e->getMessage();
+    }
+    
+    $conn = null;
+    return true;
+}
+
+function updatePassword($id, $data){
+    $conn = db_conn();
+    $selectQuery = "UPDATE `doctor` set `Password` = ? where `ID` = ?";
+    try{
+        $stmt = $conn->prepare($selectQuery);
+        $stmt->execute([
+            $data, $id
+        ]);
+    }catch(PDOException $e){
+        echo $e->getMessage();
+    }
+    
+    $conn = null;
+    return true;
+}
+
+function updatePicture($id, $data){
+    $conn = db_conn();
+    $selectQuery = "UPDATE `doctor` set `Image` = ? where `ID` = ?";
+    try{
+        $stmt = $conn->prepare($selectQuery);
+        $stmt->execute([
+            $data, $id
         ]);
     }catch(PDOException $e){
         echo $e->getMessage();
@@ -56,7 +88,7 @@ function updateProduct($id, $data){
 
 function deleteProduct($id){
     $conn = db_conn();
-    $selectQuery = "DELETE FROM `doctor` WHERE `ID` = ?";
+    $selectQuery = "DELETE FROM `product_info` WHERE `ID` = ?";
     try{
         $stmt = $conn->prepare($selectQuery);
         $stmt->execute([$id]);

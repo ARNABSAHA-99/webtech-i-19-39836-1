@@ -1,12 +1,12 @@
-<?php 
-require 'Model/jsonCode.php';
-$data=readFromJson("Json/data.json");
+<?php
+require_once ('model/model.php');
+$data = showAllData();
 foreach($data as $row)  
 { 
-	if($_POST['email']==$row["email"])
+	if($_POST['email']==$row["Email"])
 	{
 
-		$email = $row["email"];
+		$email = $row["Email"];
   		return;
 
 	}

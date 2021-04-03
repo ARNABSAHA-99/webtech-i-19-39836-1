@@ -6,5 +6,6 @@ if($data!= null)
 	$name = $data["Name"];
   	$password = $data["Password"];
   	$category = $data["Category"];
+  	$id = $data["ID"];
 }
 ?>
