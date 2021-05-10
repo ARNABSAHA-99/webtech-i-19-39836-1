@@ -18,10 +18,10 @@ require 'Controller/storeData.php';
 <div class="container-fluid">
   <div class="container">
 <div class="div">
-<fieldset class="b" style="border: 2px solid black; padding: 10px 10px;">
+<fieldset class="b" style="border: 2px solid black; padding: 10px 10px; margin-bottom: 20px;">
 <legend>REGISTRATION</legend>                 
   <form method="post"> 
-  <label for=name">Name :</label>
+  <label for="name">Name :</label>
   <input type="text" id="name" name="name">
   <span class="error"> <?php echo $nameErr;?></span><hr>
 

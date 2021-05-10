@@ -22,7 +22,7 @@ require 'Controller/storeData.php';
 <fieldset class="b" style="border: 2px solid black; padding: 10px 10px;">
 <legend>EDIT PROFILE</legend>                 
   <form method="post"> 
-  <label for=name">Name :</label>
+  <label for="name">Name :</label>
   <input type="text" id="name" name="name" value="<?php echo $name ?>">
   <span class="error"> <?php echo $nameErr;?></span><hr>
 
